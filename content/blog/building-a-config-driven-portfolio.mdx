@@ -1,0 +1,47 @@
+---
+title: "Building a Config-Driven Developer Portfolio"
+description: "How centralizing configuration and data streams transforms portfolio maintainability and performance."
+date: "2026-03-15"
+readTime: "4 min read"
+tags: ["Architecture", "Next.js", "TypeScript"]
+---
+
+# Building a Config-Driven Developer Portfolio
+
+Developer portfolios tend to become stagnant because updating information requires hunting through multiple hardcoded components.
+
+By designing a **central configuration architecture**, we decouple content from presentation.
+
+## The Problem With Hardcoded Portfolios
+
+When personal details, socials, projects, and skills are duplicated across landing sections, headers, footers, and interactive widgets (like terminals), making a single update becomes error-prone.
+
+```typescript
+// Anti-pattern: Hardcoded across components
+export const Hero = () => <h1>Sagar Kumar Jha</h1>;
+export const Footer = () => <footer>© Sagar Kumar Jha</footer>;
+```
+
+## The Solution: A Typed Central Config
+
+Define your schemas first in TypeScript:
+
+```typescript
+export interface SiteConfig {
+  name: string;
+  role: string;
+  bio: string;
+  github: { username: string };
+  skills: SkillCategory[];
+  featuredProjects: FeaturedProjectConfig[];
+}
+```
+
+Now, every component—including interactive terminals and dynamic project cards—pulls from this unified source of truth.
+
+## Conclusion
+
+This approach gives you:
+1. **Single Point of Update**: Change your configuration file, and every page and component reflects the update.
+2. **Type Safety**: Invalid configurations trigger build-time errors before reaching production.
+3. **Clean Decoupling**: Visual redesigns don't risk losing content or breaking data formats.

@@ -1,0 +1,42 @@
+---
+title: "Understanding Algorithms: Space-Time Complexity in Practice"
+description: "Why asymptotic analysis matters for real-world software engineering and practical heuristics for optimization."
+date: "2026-02-20"
+readTime: "6 min read"
+tags: ["Algorithms", "Performance", "Computer Science"]
+---
+
+# Understanding Algorithms: Space-Time Complexity in Practice
+
+Big-O notation is often treated purely as an interview topic, but understanding algorithmic complexity is critical when designing backend pipelines and responsive frontend state.
+
+## Why Complexity Matters
+
+Consider searching through an unsorted dataset versus maintaining an indexed map:
+
+```typescript
+// Linear search: O(n)
+function findItem<T>(items: T[], predicate: (item: T) => boolean) {
+  for (const item of items) {
+    if (predicate(item)) return item;
+  }
+  return null;
+}
+
+// Map lookup: O(1) average
+const itemMap = new Map<string, Item>();
+const item = itemMap.get(id);
+```
+
+## Space-Time Tradeoffs
+
+In web development, caching and memoization are direct applications of the space-time tradeoff:
+
+* **Memory Cost**: Storing precomputed values or API responses.
+* **Speed Gain**: Eliminating redundant computations and network roundtrips.
+
+## Summary
+
+Always evaluate your problem constraints:
+* If input size $N \le 10^3$, quadratic algorithms are acceptable.
+* If input size $N \ge 10^5$, you must target $O(N \log N)$ or $O(N)$.
